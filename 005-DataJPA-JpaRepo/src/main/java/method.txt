@@ -1,0 +1,56 @@
+
+  1) Iterable <T> findAll(Sort sort) :--
+  
+         a)  Sort ascending = Sort.by("sal").ascending();
+		     List<Employee> list = repo.findAll(ascending);
+		
+		     for(Employee e : list)
+		     	System.out.println(e);
+		     	
+		 b)  Sort sort = Sort.by("empName","sal").descending();
+		     List<Employee> list = repo.findAll(sort);
+		
+		     for(Employee e : list)
+		     	System.out.println(e); 
+		     	
+		c)   Sort sort = Sort.by("empName").ascending();
+		     repo.findAll(sort).forEach(System.out:: println);    
+		     
+		     
+		     
+		     
+		     
+
+   2) Pagination:--
+         
+         Method--> Page<T> findAll(Pageable pageable);
+                   PageRequest of(int pageNumber, int pageSize)
+                   
+         Example-->
+               int pageNumber = 2;
+		       PageRequest page = PageRequest.of(pageNumber-1, 4);
+		       Page<Employee> findAll = repo.findAll(page);
+		       findAll.get().forEach(e-> System.out.println(e));
+		
+		
+		
+   3) QueryByExampleExecutor:--
+          
+           Methods:--
+               findAll(Example<S> example)
+               findOne(Example<S> example)
+               findAll(Example<S> example, Sort sort)
+               findAll(Example<S> example, Pageable pageable)
+               
+           Examples:--
+              a)Employee e = new Employee();
+		        e.setGender("Male");
+		        e.setDept("IT");
+		
+		        Example<Employee> ex = Example.of(e);
+		
+		        List<Employee> list = repo.findAll(ex);
+		        list.forEach(System.out :: println);    		
+		
+		
+				     	   	
